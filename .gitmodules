@@ -1,0 +1,6 @@
+[submodule "Sources/Subrepos/XSO"]
+	path = Sources/Subrepos/x-superobject
+	url = https://github.com/onryldz/x-superobject
+[submodule "Source/subrepos/x-superobject"]
+	path = Source/subrepos/x-superobject
+	url = https://github.com/onryldz/x-superobject

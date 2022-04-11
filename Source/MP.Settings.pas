@@ -1,37 +1,36 @@
 unit MP.Settings;
 
 interface
+
 uses
   System.Classes,
   System.Types,
   System.SysUtils,
   System.IOUtils,
 
-  XSuperObject
-  ;
+  XSuperObject;
 
 type
   TLoginSettings = record
-    username : string;
-    showRecent : Boolean;
+    UserName: string;
+    ShowRecent: Boolean;
   end;
 
   TMyProgSettings = class
-  private
   public
-    chk1 : boolean;
-    chk2 : boolean;
-    radioIndex : integer;
-    login : TLoginSettings;
-    class function getSettingsFolder() : string;
-    class function getDefaultSettingsFilename() : string;
+    Chk1: Boolean;
+    Chk2: Boolean;
+    RadioIndex: integer;
+    Login: TLoginSettings;
+    class function GetSettingsFolder(): string;
+    class function GetDefaultSettingsFilename(): string;
     constructor Create();
-    procedure LoadFromFile(AFilename : string = '');
-    procedure SaveToFile(AFilename : string = '');
+    procedure LoadFromFile(AFilename: string = '');
+    procedure SaveToFile(AFilename: string = '');
   end;
 
 var
-  Settings : TMyProgSettings;
+  Settings: TMyProgSettings;
 
 implementation
 
@@ -39,48 +38,48 @@ implementation
 
 constructor TMyProgSettings.Create;
 begin
-  chk1 := true;
-  chk2 := false;
-  radioIndex := 0;
+  Chk1 := true;
+  Chk2 := false;
+  RadioIndex := 0;
 end;
 
-class function TMyProgSettings.getDefaultSettingsFilename: string;
+class function TMyProgSettings.GetDefaultSettingsFilename: string;
 begin
-  result := IncludeTrailingPathDelimiter(getSettingsFolder) + 'init.json';
+  Result := Tpath.Combine(GetSettingsFolder(), 'init.json');
 end;
 
-class function TMyProgSettings.getSettingsFolder: string;
+class function TMyProgSettings.GetSettingsFolder: string;
 begin
-  {$IFDEF MACOS}
-  result := IncludeTrailingPathDelimiter(Tpath.GetLibraryPath) + 'MyProg';
-  {$ELSE}
-  result := IncludeTrailingPathDelimiter(TPath.GetHomePath) + 'MyProg';
-  {$ENDIF}
+{$IFDEF MACOS}
+  Result := Tpath.Combine(Tpath.GetLibraryPath, 'MyProg');
+{$ELSE}
+  Result := Tpath.Combine(Tpath.GetHomePath, 'MyProg');
+{$ENDIF}
 end;
 
 procedure TMyProgSettings.LoadFromFile(AFilename: string = '');
 var
-  json : string;
+  Json: string;
 begin
   if AFilename = '' then
-    AFilename := getDefaultSettingsFilename();
+    AFilename := GetDefaultSettingsFilename();
 
   if not FileExists(AFilename) then
     exit;
 
-  json := TFile.ReadAllText(AFilename, TEncoding.UTF8);
-  AssignFromJSON(json); // magic method from XSuperObject's helper
+  Json := TFile.ReadAllText(AFilename, TEncoding.UTF8);
+  AssignFromJSON(Json); // magic method from XSuperObject's helper
 end;
 
 procedure TMyProgSettings.SaveToFile(AFilename: string = '');
 var
-  json : string;
+  Json: string;
 begin
   if AFilename = '' then
-    AFilename := getDefaultSettingsFilename();
+    AFilename := GetDefaultSettingsFilename();
 
-  json := AsJSON(true); // magic method from XSuperObject's helper too
-  TFile.WriteAllText(AFilename, json, TEncoding.UTF8);
+  Json := AsJSON(true); // magic method from XSuperObject's helper too
+  TFile.WriteAllText(AFilename, Json, TEncoding.UTF8);
 end;
 
 end.

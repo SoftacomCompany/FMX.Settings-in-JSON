@@ -3,21 +3,33 @@ unit MP.LoginForm;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.StdCtrls,
-  FMX.Objects, FMX.Controls.Presentation, FMX.Edit, FMX.Layouts;
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
+  System.Variants,
+  FMX.Types,
+  FMX.Controls,
+  FMX.Forms,
+  FMX.Graphics,
+  FMX.Dialogs,
+  FMX.StdCtrls,
+  FMX.Objects,
+  FMX.Controls.Presentation,
+  FMX.Edit,
+  FMX.Layouts;
 
 type
   TLoginForm = class(TForm)
-    imgLogo: TImage;
-    eLogin: TEdit;
-    txtLogin: TText;
-    ePassword: TEdit;
-    txtPassword: TText;
-    blogin: TSpeedButton;
-    bClose: TSpeedButton;
-    lay1: TLayout;
-    chkShowRecentUsername: TCheckBox;
+    ImageLogo: TImage;
+    EditLogin: TEdit;
+    TextLogin: TText;
+    EditPassword: TEdit;
+    TextPassword: TText;
+    ButtonLogin: TSpeedButton;
+    ButtonClose: TSpeedButton;
+    Layout1: TLayout;
+    CheckBoxShowRecentUsername: TCheckBox;
   private
     { Private declarations }
   public
@@ -27,14 +39,12 @@ type
     destructor Destroy; override;
   end;
 
-
 implementation
 
 uses
   MP.Settings;
 
 {$R *.fmx}
-
 { TLoginForm }
 
 constructor TLoginForm.Create(AOwner: TComponent);
@@ -51,17 +61,17 @@ end;
 
 procedure TLoginForm.LoadFromSettings;
 begin
-  eLogin.Text := settings.login.username;
-  chkShowRecentUsername.IsChecked := Settings.login.showRecent;
+  EditLogin.Text := Settings.Login.UserName;
+  CheckBoxShowRecentUsername.IsChecked := Settings.Login.ShowRecent;
 end;
 
 procedure TLoginForm.SaveToSettings;
 begin
-  if chkShowRecentUsername.IsChecked then
-    settings.login.username := eLogin.Text
+  if CheckBoxShowRecentUsername.IsChecked then
+    Settings.Login.UserName := EditLogin.Text
   else
-    settings.login.username := '';
-  Settings.login.showRecent := chkShowRecentUsername.IsChecked;
+    Settings.Login.UserName := '';
+  Settings.Login.ShowRecent := CheckBoxShowRecentUsername.IsChecked;
 end;
 
 end.

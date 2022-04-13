@@ -21,15 +21,15 @@ uses
 
 type
   TLoginForm = class(TForm)
-    ImageLogo: TImage;
-    EditLogin: TEdit;
-    TextLogin: TText;
-    EditPassword: TEdit;
-    TextPassword: TText;
-    ButtonLogin: TSpeedButton;
-    ButtonClose: TSpeedButton;
-    Layout1: TLayout;
-    CheckBoxShowRecentUsername: TCheckBox;
+    imgLogo: TImage;
+    edtLogin: TEdit;
+    txtLogin: TText;
+    edtPassword: TEdit;
+    txtPassword: TText;
+    btnLogin: TSpeedButton;
+    btnClose: TSpeedButton;
+    lay1: TLayout;
+    chkShowRecentUsername: TCheckBox;
   private
     { Private declarations }
   public
@@ -61,17 +61,17 @@ end;
 
 procedure TLoginForm.LoadFromSettings;
 begin
-  EditLogin.Text := Settings.Login.UserName;
-  CheckBoxShowRecentUsername.IsChecked := Settings.Login.ShowRecent;
+  edtLogin.Text := Settings.Login.UserName;
+  chkShowRecentUsername.IsChecked := Settings.Login.ShowRecent;
 end;
 
 procedure TLoginForm.SaveToSettings;
 begin
-  if CheckBoxShowRecentUsername.IsChecked then
-    Settings.Login.UserName := EditLogin.Text
+  if chkShowRecentUsername.IsChecked then
+    Settings.Login.UserName := edtLogin.Text
   else
     Settings.Login.UserName := '';
-  Settings.Login.ShowRecent := CheckBoxShowRecentUsername.IsChecked;
+  Settings.Login.ShowRecent := chkShowRecentUsername.IsChecked;
 end;
 
 end.

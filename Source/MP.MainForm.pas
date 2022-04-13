@@ -20,13 +20,13 @@ uses
 
 type
   TMainForm = class(TForm)
-    Chk1: TCheckBox;
-    Chk2: TCheckBox;
-    Lay1: TLayout;
-    Rb1: TRadioButton;
-    Rb2: TRadioButton;
-    Rb3: TRadioButton;
-    Txt1: TText;
+    chk1: TCheckBox;
+    chk2: TCheckBox;
+    lay1: TLayout;
+    rb1: TRadioButton;
+    rb2: TRadioButton;
+    rb3: TRadioButton;
+    txt1: TText;
     procedure chk1Change(Sender: TObject);
   private
     procedure LoadFromSettings;
@@ -103,8 +103,8 @@ begin
     begin
       if F.ShowModal = mrOK then
       begin
-        Login := F.EditLogin.Text;
-        Password := F.EditPassword.Text;
+        Login := F.edtLogin.Text;
+        Password := F.edtLogin.Text;
         if LoginCorrect(Login, Password) then
           Break;
       end
@@ -118,23 +118,23 @@ end;
 
 procedure TMainForm.LoadFromSettings();
 begin
-  Chk1.IsChecked := Settings.Chk1;
-  Chk2.IsChecked := Settings.Chk2;
-  Rb1.IsChecked := Settings.radioIndex = 0;
-  Rb2.IsChecked := Settings.radioIndex = 1;
-  Rb3.IsChecked := Settings.radioIndex = 2;
+  chk1.IsChecked := Settings.Chk1;
+  chk1.IsChecked := Settings.Chk2;
+  rb1.IsChecked := Settings.RadioIndex = 0;
+  rb2.IsChecked := Settings.RadioIndex = 1;
+  rb3.IsChecked := Settings.RadioIndex = 2;
 end;
 
-// Save UI components to settings
+// Save UI components state to settings
 procedure TMainForm.SaveToSettings();
 begin
-  Settings.Chk1 := Chk1.IsChecked;
-  Settings.Chk2 := Chk2.IsChecked;
-  if Rb1.IsChecked then
+  Settings.Chk1 := chk1.IsChecked;
+  Settings.Chk2 := chk1.IsChecked;
+  if rb1.IsChecked then
     Settings.radioIndex := 0
-  else if Rb2.IsChecked then
+  else if rb2.IsChecked then
     Settings.radioIndex := 1
-  else if Rb3.IsChecked then
+  else if rb3.IsChecked then
     Settings.radioIndex := 2;
 end;
 

@@ -25,8 +25,8 @@ type
     class function GetSettingsFolder(): string;
     class function GetDefaultSettingsFilename(): string;
     constructor Create();
-    procedure LoadFromFile(AFilename: string = '');
-    procedure SaveToFile(AFilename: string = '');
+    procedure LoadFromFile(AFileName: string = '');
+    procedure SaveToFile(AFileName: string = '');
   end;
 
 var
@@ -38,48 +38,48 @@ implementation
 
 constructor TMyProgSettings.Create;
 begin
-  Chk1 := true;
-  Chk2 := false;
+  Chk1 := True;
+  Chk2 := False;
   RadioIndex := 0;
 end;
 
 class function TMyProgSettings.GetDefaultSettingsFilename: string;
 begin
-  Result := Tpath.Combine(GetSettingsFolder(), 'init.json');
+  Result := TPath.Combine(GetSettingsFolder(), 'init.json');
 end;
 
 class function TMyProgSettings.GetSettingsFolder: string;
 begin
 {$IFDEF MACOS}
-  Result := Tpath.Combine(Tpath.GetLibraryPath, 'MyProg');
+  Result := TPath.Combine(TPath.GetLibraryPath(), 'MyProg');
 {$ELSE}
-  Result := Tpath.Combine(Tpath.GetHomePath, 'MyProg');
+  Result := TPath.Combine(TPath.GetHomePath(), 'MyProg');
 {$ENDIF}
 end;
 
-procedure TMyProgSettings.LoadFromFile(AFilename: string = '');
+procedure TMyProgSettings.LoadFromFile(AFileName: string = '');
 var
   Json: string;
 begin
-  if AFilename = '' then
-    AFilename := GetDefaultSettingsFilename();
+  if AFileName = '' then
+    AFileName := GetDefaultSettingsFilename();
 
-  if not FileExists(AFilename) then
+  if not FileExists(AFileName) then
     exit;
 
-  Json := TFile.ReadAllText(AFilename, TEncoding.UTF8);
+  Json := TFile.ReadAllText(AFileName, TEncoding.UTF8);
   AssignFromJSON(Json); // magic method from XSuperObject's helper
 end;
 
-procedure TMyProgSettings.SaveToFile(AFilename: string = '');
+procedure TMyProgSettings.SaveToFile(AFileName: string = '');
 var
   Json: string;
 begin
-  if AFilename = '' then
-    AFilename := GetDefaultSettingsFilename();
+  if AFileName = '' then
+    AFileName := GetDefaultSettingsFilename();
 
   Json := AsJSON(true); // magic method from XSuperObject's helper too
-  TFile.WriteAllText(AFilename, Json, TEncoding.UTF8);
+  TFile.WriteAllText(AFileName, Json, TEncoding.UTF8);
 end;
 
 end.

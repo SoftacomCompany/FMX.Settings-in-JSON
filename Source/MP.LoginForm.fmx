@@ -1,7 +1,7 @@
 object LoginForm: TLoginForm
   Left = 0
   Top = 0
-  ActiveControl = EditLogin
+  ActiveControl = edtLogin
   BorderIcons = []
   BorderStyle = None
   Caption = 'Login'
@@ -12,7 +12,7 @@ object LoginForm: TLoginForm
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   DesignerMasterStyle = 0
-  object EditLogin: TEdit
+  object edtLogin: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
     TabOrder = 2
     Position.X = 88.000000000000000000
@@ -21,7 +21,7 @@ object LoginForm: TLoginForm
     Size.Height = 25.000000000000000000
     Size.PlatformDefault = False
   end
-  object TextLogin: TText
+  object txtLogin: TText
     Position.X = 88.000000000000000000
     Position.Y = 128.000000000000000000
     Size.Width = 153.000000000000000000
@@ -29,7 +29,7 @@ object LoginForm: TLoginForm
     Size.PlatformDefault = False
     Text = 'Username'
   end
-  object EditPassword: TEdit
+  object edtPassword: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
     TabOrder = 1
     Position.X = 88.000000000000000000
@@ -38,7 +38,7 @@ object LoginForm: TLoginForm
     Size.Height = 25.000000000000000000
     Size.PlatformDefault = False
   end
-  object TextPassword: TText
+  object txtPassword: TText
     Position.X = 88.000000000000000000
     Position.Y = 200.000000000000000000
     Size.Width = 153.000000000000000000
@@ -46,7 +46,7 @@ object LoginForm: TLoginForm
     Size.PlatformDefault = False
     Text = 'Password'
   end
-  object ButtonLogin: TSpeedButton
+  object btnLogin: TSpeedButton
     ModalResult = 1
     Position.X = 88.000000000000000000
     Position.Y = 288.000000000000000000
@@ -56,13 +56,13 @@ object LoginForm: TLoginForm
     StyleLookup = 'buttonstyle'
     Text = 'Log in'
   end
-  object Layout1: TLayout
+  object lay1: TLayout
     Align = Top
     Size.Width = 322.000000000000000000
     Size.Height = 41.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 3
-    object ButtonClose: TSpeedButton
+    object btnClose: TSpeedButton
       Align = Right
       ModalResult = 8
       Position.X = 296.000000000000000000
@@ -70,10 +70,10 @@ object LoginForm: TLoginForm
       Size.Height = 41.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'stoptoolbutton'
-      Text = 'ButtonClose'
+      Text = 'btnClose'
     end
   end
-  object ImageLogo: TImage
+  object imgLogo: TImage
     MultiResBitmap.Height = 100
     MultiResBitmap.Width = 100
     MultiResBitmap = <
@@ -192,7 +192,7 @@ object LoginForm: TLoginForm
     Size.Height = 73.000000000000000000
     Size.PlatformDefault = False
   end
-  object CheckBoxShowRecentUsername: TCheckBox
+  object chkShowRecentUsername: TCheckBox
     Position.X = 88.000000000000000000
     Position.Y = 345.000000000000000000
     Size.Width = 193.000000000000000000

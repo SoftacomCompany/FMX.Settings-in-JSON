@@ -7,7 +7,6 @@ uses
   System.Types,
   System.SysUtils,
   System.IOUtils,
-
   XSuperObject;
 
 type

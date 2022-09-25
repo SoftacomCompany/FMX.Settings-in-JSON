@@ -29,6 +29,7 @@ type
     txt1: TText;
     procedure chk1Change(Sender: TObject);
   private
+    var IgnoreChangeEvent: boolean;
     procedure LoadFromSettings;
     procedure SaveToSettings;
     procedure TryLogin;
@@ -68,14 +69,15 @@ end;
 // load UI components from loaded settings
 procedure TMainForm.chk1Change(Sender: TObject);
 begin
-  SaveToSettings();
+  if not IgnoreChangeEvent then
+    SaveToSettings();
 end;
 
 constructor TMainForm.Create(AOwner: TComponent);
 begin
   inherited;
+  IgnoreChangeEvent := False;
   LoadSettings();
-
   TryLogin();
   if Application.Terminated then
     exit;
@@ -104,7 +106,7 @@ begin
       if F.ShowModal = mrOK then
       begin
         Login := F.edtLogin.Text;
-        Password := F.edtLogin.Text;
+        Password := F.edtPassword.Text;
         if LoginCorrect(Login, Password) then
           Break;
       end
@@ -118,11 +120,13 @@ end;
 
 procedure TMainForm.LoadFromSettings();
 begin
-  chk1.IsChecked := Settings.Chk1;
-  chk1.IsChecked := Settings.Chk2;
-  rb1.IsChecked := Settings.RadioIndex = 0;
-  rb2.IsChecked := Settings.RadioIndex = 1;
-  rb3.IsChecked := Settings.RadioIndex = 2;
+  IgnoreChangeEvent  := True;
+  chk1.IsChecked     := Settings.Chk1;
+  chk2.IsChecked     := Settings.Chk2;
+  rb1.IsChecked      := Settings.RadioIndex = 0;
+  rb2.IsChecked      := Settings.RadioIndex = 1;
+  rb3.IsChecked      := Settings.RadioIndex = 2;
+  IgnoreChangeEvent := False;
 end;
 
 // Save UI components state to settings
